@@ -1,0 +1,82 @@
+<style>
+
+    th, td {
+        padding: 11px;
+        text-align: left;
+    }
+
+    textarea {
+        resize: none;
+        height: auto;
+    }
+
+    @-moz-document url-prefix() {
+        textarea {
+            height: 1em;
+            resize: none;
+        }
+    }
+</style>
+<div class="panel panel-primary col-md-12" style="padding:0px;">
+    <form class="col-md-12" style="padding:0px;" [formGroup]="referCandidateForm" (ngSubmit)="editCandidateStatus()">
+        <div style="padding-top:30px;" class="col-md-12">
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Name :
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    {{referralDetail.CandidateName}}
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Skill :
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    {{referralDetail.JobTitile}}
+
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Status :
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <select formControlName="status">
+                        <option *ngFor="let x of statuses" [value]="x">{{x}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Comments :
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <textarea class="form-control" formControlName="commments" maxlength="500"></textarea>
+
+                </div>
+            </div>
+            <div class="pull-right col-md-12 form-group">
+                <button class="btn btn-success margin-left-right-10 margin-bottom-20"
+                        style="float:right" type="submit">
+                    <i class="fa fa-thumbs-up"></i>
+                    Submit
+                </button>
+            </div>
+            <div class="col-md-12" *ngIf="ErrorMessage">
+                <div class="alert bg-danger alert-dismissable fade in" *ngIf="!ErrorMessage?.Status">
+                    <button class="close" data-dismiss="alert" aria-label="close" (click)="ErrorMessage = ''">&times;</button>
+                    <strong>Error! </strong> {{ErrorMessage?.Messages[0]?.Message}}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

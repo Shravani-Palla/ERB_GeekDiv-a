@@ -1,0 +1,18 @@
+
+<p-dialog header="Refer a Candidate" [(visible)]="display" [style]="{width: '700px'}">
+    <refer-popup (dialogClose)="closeDialog()"><b>Refer a Candidate</b></refer-popup>
+</p-dialog>
+<input type="button" class="btn btn-primary pull-right" Value="Refer a Candidate" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show">
+<div style="margin-top:50px">
+    <div *ngFor="let job of jobOpenings">
+        <p-panel header="{{job}}" [toggleable]="true" [collapsed]="true">
+            <ul>
+                <li *ngFor="let desc of jobDescription">
+                    {{ desc }}
+                </li>
+            </ul>
+        </p-panel>
+        <br>
+    </div>
+</div>
+<grid></grid>

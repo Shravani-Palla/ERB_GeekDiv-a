@@ -1,0 +1,46 @@
+
+<div class="row">
+    <p-button label="View Referrals" style="float: right;padding: 10px" (onClick)="goToGridPage()"></p-button>
+</div>
+<div class="row">
+    <div class="column">
+        <p-card>
+            <h1>
+                Referrals in 2019
+                <br /><br />
+                Total : 142
+                <br /><br />
+                Closed : 101
+                <br /><br /><br />
+            </h1>
+        </p-card>
+    </div>
+    <div class="column">
+        <p-card>
+            Rerral Status
+            <p-chart type="doughnut" [data]="data"></p-chart>
+            <br />
+        </p-card>
+    </div>
+</div>
+
+<p-card class="row">
+    Submitted vs Accepted Referrals
+    <p-chart type="bar" [data]="practiseData"></p-chart>
+</p-card>
+
+<div class="row">
+    <div class="column">
+        <p-card>
+            Top 5 companies of most referrals
+            <p-chart type="bar" [data]="highCompanies"></p-chart>
+        </p-card>
+    </div>
+    <div class="column">
+        <p-card>
+            Top 5 employees for successful referrals
+            <p-chart type="bar" [data]="highReferralsByEmployee"></p-chart>
+        </p-card>
+    </div>
+</div>
+

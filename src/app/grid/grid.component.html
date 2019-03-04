@@ -1,0 +1,68 @@
+
+<p-dialog header="Refer a Candidate" [(visible)]="display" [style]="{width: '700px'}">
+    <refer-popup>Refer a Candidate</refer-popup>
+</p-dialog>
+
+<p-table [columns]="cols" [value]="candidateDetails" dataKey="vin">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 3em"></th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+        <tr>
+            <td>
+                <a href="#" [pRowToggler]="rowData">
+                    <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                </a>
+            </td>
+            <td *ngFor="let col of columns">
+                <!-- <span *ngIf="rowData[col.field]=='edit'">{{rowData[col.field]}}</span> -->
+                <span *ngIf="rowData[col.field]=='edit';else second">
+                    <button class="btn btn-info" (click)="showDialog()">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                </span>
+                <ng-template #second>
+                    <span *ngIf="col.field=='Rating';else other_content">
+                        <p-rating [(ngModel)]="rowData[col.field]" cancel=true></p-rating>
+                    </span>
+                </ng-template>
+                <ng-template #other_content>{{rowData[col.field]}}</ng-template>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+        <tr>
+            <td [attr.colspan]="columns.length + 1">
+                <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+                    <div class="ui-g-12 ui-md-3" style="text-align:center">
+                        <img [attr.alt]="rowData.brand" width="200" height="200" class="img-circle" src="../../app/assets/emp1.jpg">
+                    </div>
+                    <div class="ui-g-12 ui-md-9">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <b>Resume:&nbsp;</b>
+                                <a href="#" class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-download-alt"></span> Download
+                                </a>
+                            </div>
+                            <div class="ui-g-12">
+                                <b>Applied Date:</b> {{rowData.AppliedDate}}
+                            </div>
+                            <div class="ui-g-12">
+                                <b>HR Comments:</b> {{rowData.HRComments}}
+                            </div>
+                            <div class="ui-g-12">
+                                <b>Interviewer Comments:</b> {{rowData.InterviewerComments}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

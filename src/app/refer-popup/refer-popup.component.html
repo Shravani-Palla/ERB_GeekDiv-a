@@ -1,0 +1,104 @@
+<style>
+    th, td {
+        padding: 11px;
+        text-align: left;
+    }
+
+    textarea {
+        resize: none;
+        height: auto;
+    }
+
+    @-moz-document url-prefix() {
+        textarea {
+            height: 1em;
+            resize: none;
+        }
+    }
+</style>
+
+<div class="panel panel-primary col-md-12" style="padding:0px;">
+    <form  class="col-md-12" style="padding:0px;" [formGroup]="referCandidateForm" (ngSubmit)="addReferralCandidate()">
+        <div style="padding-top:30px;" class="col-md-12">
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Name :<span style="color:red"> *</span>
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" min="1" max="24" formControlName="candidateName">
+
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Email :<span style="color:red"> *</span>
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" min="1" max="24" formControlName="email">
+
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Company :
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" min="1" max="24" formControlName="company">
+
+                </div>
+            </div>
+            <div class="col-md-12 form-group" *ngIf="!manualFill">
+                <div class="col-md-4">
+                    <label>
+                        Technology :<span style="color:red"> *</span>
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <select formControlName="technology">
+                        <option *ngFor="let x of jobOpenings" [value]="x">{{x}}</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Comments :
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <textarea class="form-control" formControlName="commments" maxlength="500"></textarea>
+
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-4">
+                    <label>
+                        Upload Resume : <input type="file" />
+                    </label>
+                </div>
+            </div>
+            <div class="pull-right col-md-12 form-group">
+                <button class="btn btn-success margin-left-right-10 margin-bottom-20"
+                        style="float:right" type="submit">
+                    <i class="fa fa-thumbs-up"></i>
+                    Submit
+                </button>
+            </div>
+            <div class="col-md-12" *ngIf="ErrorMessage">
+                <div class="alert bg-danger alert-dismissable fade in" *ngIf="!ErrorMessage?.Status">
+                    <button class="close" data-dismiss="alert" aria-label="close" (click)="ErrorMessage = ''">&times;</button>
+                    <strong>Error! </strong> {{ErrorMessage?.Messages[0]?.Message}}
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

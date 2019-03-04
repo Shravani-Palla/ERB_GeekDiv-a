@@ -1,0 +1,26 @@
+
+<div class="container">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="margin-top: 30px">
+        <h1>Employee Referral Box</h1>
+        <form [formGroup]="loginForm">
+            <table class="table" [formGroup]="loginForm">
+                <thead>
+                    <tr><th colspan="3"><h3>Login</h3></th></tr>
+                </thead>
+                <tr><td colspan="2"><img class="img-circle" alt="logo" src="../../app/assets/loginpic.png"></td>
+                <tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td><input type="email" formControlName="email"></td>
+                </tr>
+                <tr>
+                    <td><b>Password</b></td>
+                    <td><input type="password" formControlName="password"></td>
+                </tr>
+                <tr><td><input type="submit" value=Login (click)="login();"></td><td><a href="">Change Password</a></td></tr>
+            </table>
+        </form>
+        <p-messages [(value)]="msgs"></p-messages>
+    </div>
+</div>
